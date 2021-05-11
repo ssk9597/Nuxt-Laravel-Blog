@@ -1,5 +1,5 @@
 export default function ({ store, redirect }) {
-  const login = store.state.auth.authenticated;
+  const login = sessionStorage.getItem('authenticated');
   if (!login) {
     redirect('/login');
   }
