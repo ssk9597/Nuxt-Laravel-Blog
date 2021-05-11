@@ -18,27 +18,10 @@ mysql:5.7
 
 node:14.15.3-alpine
 
-## Usage
-
-```
-$ git clone git@github.com:ssk9597/Login-Form.git
-$ cd Login-Form
-$ make nuxt
-$ make backend
-```
-
-### nuxt
+## nuxt
 
 http://127.0.0.1:3000/
 
-### register
-
-http://127.0.0.1:3000/register
-
-### login
-
-http://127.0.0.1:3000/login
-
-### api
+## api
 
 http://127.0.0.1:10080/
