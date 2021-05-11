@@ -55,7 +55,7 @@ import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 export default defineComponent({
   setup(props, context) {
     // axios
-    const { $axios } = useContext();
+    const { $axios, store } = useContext();
     // router
     const router = context.root.$router;
     // data
@@ -66,18 +66,25 @@ export default defineComponent({
     // methods
     const loginUser = async () => {
       try {
+        // ログイン
         const res = await $axios.post('/users/login', {
           email: email.value,
           password: password.value,
         });
+
         // error_message
         errors.value = res.data.message;
+
+        // token
+        await $axios.setToken(res.data.token, 'Bearer');
+
+        // ログイン成功
+        await store.commit('auth/updateAuthenticated');
+
         // errorがない時TOPページへ移動する
         if (!errors.value) {
           router.push('/');
         }
-        // token
-        await $axios.setToken(res.data.token, 'Bearer');
       } catch (err) {
         errors.value = err.response.data.errors;
       }
