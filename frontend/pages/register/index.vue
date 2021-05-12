@@ -87,7 +87,7 @@ import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-
 export default defineComponent({
   setup(props, context) {
     // axios
-    const { $axios } = useContext();
+    const { $axios, store } = useContext();
     // router
     const router = context.root.$router;
     // data
@@ -121,6 +121,10 @@ export default defineComponent({
         // token
         await $axios.setToken(res.data.token, 'Bearer');
 
+        // ログイン成功
+        await store.commit('updateAuthenticated');
+
+        // ルーティング処理
         router.push('/');
       } catch (err) {
         errors.value = err.response.data.errors;
