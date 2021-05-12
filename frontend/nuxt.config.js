@@ -20,7 +20,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '@/plugins/vee-validate' }, { src: '@/plugins/quill', ssr: false }],
+  plugins: [
+    { src: '@/plugins/vee-validate' },
+    { src: '@/plugins/cookie-storage' },
+    { src: '@/plugins/quill', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -42,7 +46,7 @@ export default {
       poll: true,
     },
   },
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/dotenv', 'cookie-universal-nuxt'],
   proxy: {
     '/api': environment === 'development' ? process.env.API_URL : 'https://www.example.org',
   },
