@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div v-if="errors" class="post-alert-red">
+      <p v-if="errors.title">{{ errors.title[0] }}</p>
+      <p v-if="errors.url">{{ errors.url[0] }}</p>
+      <p v-if="errors.content">{{ errors.content[0] }}</p>
+    </div>
     <client-only>
       <div class="post-container">
         <input class="post-form" :placeholder="titlePlaceholder" type="text" v-model="title" />
@@ -63,6 +68,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.post-alert-red {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 5px 10px;
+  background: #ffebee;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
 .post-container {
   display: flex;
   flex-direction: column;
@@ -87,13 +101,11 @@ export default defineComponent({
     border: 1px solid #00b5ad;
   }
 }
-
 .post-content {
   margin-top: 20px;
   max-width: 600px;
   width: 100%;
 }
-
 .post-btn {
   max-width: 300px;
   width: 100%;
