@@ -19,20 +19,31 @@ import { VueEditor } from 'vue2-editor';
 export default defineComponent({
   // middleware: 'login_redirect',
   components: { VueEditor },
-  setup() {
+  setup(props, context) {
+    // axios
+    const { $axios } = useContext();
+    // router
+    const router = context.root.$router;
     // data
     const title = ref<string>('');
     const url = ref<string>('');
     const titlePlaceholder = ref<string>('ここにタイトルを入力してください');
-    const urlPlaceholder = ref<string>('ここにURLを入力してください');
+    const urlPlaceholder = ref<string>('ここにディレクトリを入力してください');
     const content = ref<string>('');
+    const errors = ref<string>('');
 
     //methods
     const sendContent = async () => {
       try {
-        console.log(content.value);
+        const res = await $axios.post('/posts/store', {
+          title: title.value,
+          url: url.value,
+          content: content.value,
+        });
+        console.log(res);
+        // router.push('/');
       } catch (err) {
-        console.log(err);
+        errors.value = err.response.data.errors;
       }
     };
 
@@ -43,6 +54,7 @@ export default defineComponent({
       titlePlaceholder,
       urlPlaceholder,
       content,
+      errors,
       // methods
       sendContent,
     };
