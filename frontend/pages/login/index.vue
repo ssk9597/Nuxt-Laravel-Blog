@@ -79,7 +79,7 @@ export default defineComponent({
         await $axios.setToken(res.data.token, 'Bearer');
 
         // ログイン成功
-        await store.commit('auth/updateAuthenticated');
+        await store.commit('updateAuthenticated');
 
         // errorがない時TOPページへ移動する
         if (!errors.value) {

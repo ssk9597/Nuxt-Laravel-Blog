@@ -122,7 +122,7 @@ export default defineComponent({
         await $axios.setToken(res.data.token, 'Bearer');
 
         // ログイン成功
-        await store.commit('auth/updateAuthenticated');
+        await store.commit('updateAuthenticated');
 
         // ルーティング処理
         router.push('/');
