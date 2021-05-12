@@ -83,7 +83,7 @@ export default defineComponent({
 
         // errorがない時TOPページへ移動する
         if (!errors.value) {
-          router.push('/');
+          router.push('/post');
         }
       } catch (err) {
         errors.value = err.response.data.errors;
