@@ -1,32 +1,39 @@
 <template>
   <div>
-    <div v-if="errors" class="post-alert-red">
-      <p v-if="errors.title">{{ errors.title[0] }}</p>
-      <p v-if="errors.url">{{ errors.url[0] }}</p>
-      <p v-if="errors.content">{{ errors.content[0] }}</p>
-    </div>
-    <ValidationObserver v-slot="{ invalid }">
-      <div class="post-container">
-        <ValidationProvider class="post-form" name="タイトル" rules="required" v-slot="{ errors }">
-          <input class="post-input" :placeholder="titlePlaceholder" type="text" v-model="title" />
-          <p class="post-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
-        <ValidationProvider
-          class="post-form"
-          name="URL"
-          rules="required|alpha_dash"
-          v-slot="{ errors }"
-        >
-          <input class="post-input" :placeholder="urlPlaceholder" type="text" v-model="url" />
-          <p class="post-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
-        <ValidationProvider name="本文" rules="required" v-slot="{ errors }">
-          <vue-editor class="post-content" v-model="content" />
-          <p class="post-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
-        <button class="post-btn" :disabled="invalid" @click="sendContent">投稿を保存する</button>
+    <client-only>
+      <div v-if="errors" class="post-alert-red">
+        <p v-if="errors.title">{{ errors.title[0] }}</p>
+        <p v-if="errors.url">{{ errors.url[0] }}</p>
+        <p v-if="errors.content">{{ errors.content[0] }}</p>
       </div>
-    </ValidationObserver>
+      <ValidationObserver v-slot="{ invalid }">
+        <div class="post-container">
+          <ValidationProvider
+            class="post-form"
+            name="タイトル"
+            rules="required"
+            v-slot="{ errors }"
+          >
+            <input class="post-input" :placeholder="titlePlaceholder" type="text" v-model="title" />
+            <p class="post-input-error">{{ errors[0] }}</p>
+          </ValidationProvider>
+          <ValidationProvider
+            class="post-form"
+            name="URL"
+            rules="required|alpha_dash"
+            v-slot="{ errors }"
+          >
+            <input class="post-input" :placeholder="urlPlaceholder" type="text" v-model="url" />
+            <p class="post-input-error">{{ errors[0] }}</p>
+          </ValidationProvider>
+          <ValidationProvider name="本文" rules="required" v-slot="{ errors }">
+            <vue-editor class="post-content" v-model="content" />
+            <p class="post-input-error">{{ errors[0] }}</p>
+          </ValidationProvider>
+          <button class="post-btn" :disabled="invalid" @click="sendContent">投稿を保存する</button>
+        </div>
+      </ValidationObserver>
+    </client-only>
   </div>
 </template>
 
@@ -35,8 +42,7 @@ import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-
 import { VueEditor } from 'vue2-editor';
 
 export default defineComponent({
-  // middleware: 'login_redirect',
-  components: { VueEditor },
+  middleware: 'login_redirect',
   setup(props, context) {
     // axios
     const { $axios } = useContext();
@@ -59,7 +65,7 @@ export default defineComponent({
           content: content.value,
         });
         console.log(res);
-        // router.push('/');
+        router.push('/');
       } catch (err) {
         errors.value = err.response.data.errors;
       }
