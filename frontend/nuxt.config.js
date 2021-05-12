@@ -23,7 +23,7 @@ export default {
   plugins: [
     { src: '@/plugins/vee-validate' },
     { src: '@/plugins/cookie-storage' },
-    { src: '@/plugins/quill', ssr: false },
+    { src: '@/plugins/quill', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
