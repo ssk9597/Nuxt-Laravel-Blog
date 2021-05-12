@@ -15,7 +15,8 @@
     "@nuxtjs/proxy": "^2.1.0",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
-    "vee-validate": "^3.4.5"
+    "vee-validate": "^3.4.5",
+    "vue2-editor": "^2.10.2"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.5",
