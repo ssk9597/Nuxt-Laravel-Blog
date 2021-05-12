@@ -5,15 +5,28 @@
       <p v-if="errors.url">{{ errors.url[0] }}</p>
       <p v-if="errors.content">{{ errors.content[0] }}</p>
     </div>
-    <client-only>
+    <ValidationObserver v-slot="{ invalid }">
       <div class="post-container">
-        <input class="post-form" :placeholder="titlePlaceholder" type="text" v-model="title" />
-        <input class="post-form" :placeholder="urlPlaceholder" type="text" v-model="url" />
-
-        <vue-editor class="post-content" v-model="content" />
-        <button class="post-btn" @click="sendContent">投稿を保存する</button>
+        <ValidationProvider class="post-form" name="タイトル" rules="required" v-slot="{ errors }">
+          <input class="post-input" :placeholder="titlePlaceholder" type="text" v-model="title" />
+          <p class="post-input-error">{{ errors[0] }}</p>
+        </ValidationProvider>
+        <ValidationProvider
+          class="post-form"
+          name="URL"
+          rules="required|alpha_dash"
+          v-slot="{ errors }"
+        >
+          <input class="post-input" :placeholder="urlPlaceholder" type="text" v-model="url" />
+          <p class="post-input-error">{{ errors[0] }}</p>
+        </ValidationProvider>
+        <ValidationProvider name="本文" rules="required" v-slot="{ errors }">
+          <vue-editor class="post-content" v-model="content" />
+          <p class="post-input-error">{{ errors[0] }}</p>
+        </ValidationProvider>
+        <button class="post-btn" :disabled="invalid" @click="sendContent">投稿を保存する</button>
       </div>
-    </client-only>
+    </ValidationObserver>
   </div>
 </template>
 
@@ -84,13 +97,16 @@ export default defineComponent({
   padding-top: 30px;
 }
 .post-form {
-  box-sizing: border-box;
-  display: block;
   max-width: 600px;
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+}
+.post-input {
+  box-sizing: border-box;
   width: 100%;
   height: 30px;
   padding: 0 10px;
-  margin: 10px 0;
   font-size: 12px;
   color: #333;
   border: solid 1px #ccc;
@@ -100,6 +116,12 @@ export default defineComponent({
   &:focus {
     border: 1px solid #00b5ad;
   }
+}
+.post-input-error {
+  padding-top: 5px;
+  font-size: 12px;
+  color: #ee4056;
+  font-weight: 600;
 }
 .post-content {
   margin-top: 20px;
