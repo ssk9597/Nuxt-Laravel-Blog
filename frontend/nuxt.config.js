@@ -2,7 +2,6 @@ const environment = process.env.NODE_ENV || 'development';
 require('dotenv').config();
 
 export default {
-  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'frontend',
@@ -21,7 +20,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '@/plugins/vee-validate' }, { src: '@/plugins/session-storage', ssr: false }],
+  plugins: [{ src: '@/plugins/vee-validate' }, { src: '@/plugins/cookie-storage' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,7 +42,7 @@ export default {
       poll: true,
     },
   },
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy', '@nuxtjs/dotenv', 'cookie-universal-nuxt'],
   proxy: {
     '/api': environment === 'development' ? process.env.API_URL : 'https://www.example.org',
   },
