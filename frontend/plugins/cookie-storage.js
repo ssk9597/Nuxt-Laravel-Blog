@@ -9,7 +9,7 @@ export default ({ store, req, isDev }) => {
     storage: {
       getItem: (key) =>
         process.client ? Cookies.getJSON(key) : cookie.parse(req.headers.cookie || '')[key],
-      setItem: (key, value) => Cookies.set(key, value, { expires: 365, secure: !isDev }),
+      setItem: (key, value) => Cookies.set(key, value, { expires: 1, secure: !isDev }),
       removeItem: (key) => Cookies.remove(key),
     },
   })(store);
