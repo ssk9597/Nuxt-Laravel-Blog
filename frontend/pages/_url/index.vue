@@ -3,7 +3,7 @@
     <h2>詳細ページ</h2>
     <h3>{{ post.title }}</h3>
     <p v-html="post.content"></p>
-    <button v-if="isAuth" @click="editContent">編集する</button>
+    <button v-if="isAuth" @click="edit">編集する</button>
   </div>
 </template>
 
@@ -41,7 +41,7 @@ export default defineComponent({
     });
 
     // methods
-    const editContent = () => {
+    const edit = () => {
       isEdit.value = !isEdit.value;
     };
 
@@ -51,7 +51,7 @@ export default defineComponent({
       isEdit,
       isAuth,
       // methods
-      editContent,
+      edit,
     };
   },
 });
