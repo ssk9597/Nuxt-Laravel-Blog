@@ -24,4 +24,11 @@ class PostController extends Controller
     $post = new Post;
     $post->fill($request->all())->save();
   }
+
+  // 投稿詳細を取得する
+  public function show($url)
+  {
+    $post = Post::where("url", $url)->first();
+    return $post;
+  }
 }
