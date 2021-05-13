@@ -31,4 +31,11 @@ class PostController extends Controller
     $post = Post::where("url", $url)->first();
     return $post;
   }
+
+  // 投稿を更新する
+  public function update(Request $request, $url)
+  {
+    $post = Post::where("url", $url)->first();
+    $post->fill($request->all())->save();
+  }
 }
