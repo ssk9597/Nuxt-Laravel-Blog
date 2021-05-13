@@ -9,6 +9,7 @@ use App\Models\Post;
 
 // Validation
 use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 
 class PostController extends Controller
 {
@@ -33,7 +34,7 @@ class PostController extends Controller
   }
 
   // 投稿を更新する
-  public function update(Request $request, $url)
+  public function update(UpdatePost $request, $url)
   {
     $post = Post::where("url", $url)->first();
     $post->fill($request->all())->save();
