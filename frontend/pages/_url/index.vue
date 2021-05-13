@@ -123,16 +123,14 @@ export default defineComponent({
     };
     const updateContent = async () => {
       try {
-        console.log(title.value);
-        console.log(url.value);
+        const uri = computed((): String => route.value.params.url);
         content.value = editor.value.getHTML();
-        console.log(content.value);
-        // const res = await $axios.post('/posts/store', {
-        //   title: title.value,
-        //   url: url.value,
-        //   content: content.value,
-        // });
-        // router.push('/');
+        const res = await $axios.post(`/posts/${uri.value}/update`, {
+          title: title.value,
+          url: url.value,
+          content: content.value,
+        });
+        router.push('/');
       } catch (err) {
         errors.value = err.response.data.errors;
       }
