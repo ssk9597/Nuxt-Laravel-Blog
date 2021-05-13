@@ -3,7 +3,7 @@
     <h2>詳細ページ</h2>
     <h3>{{ post.title }}</h3>
     <p v-html="post.content"></p>
-    <button @click="editContent">編集する</button>
+    <button v-if="isAuth" @click="editContent">編集する</button>
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default defineComponent({
     // data
     const post = ref<string>('');
     const isEdit = ref<Boolean>(true);
+    const isAuth = ref<Boolean>(store.state.authenticated);
 
     // mounted
     onMounted(async () => {
@@ -48,6 +49,7 @@ export default defineComponent({
       // data
       post,
       isEdit,
+      isAuth,
       // methods
       editContent,
     };
