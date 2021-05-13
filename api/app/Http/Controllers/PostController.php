@@ -39,4 +39,10 @@ class PostController extends Controller
     $post = Post::where("url", $url)->first();
     $post->fill($request->all())->save();
   }
+
+  // 投稿を削除する
+  public function destroy($id)
+  {
+    Post::destroy($id);
+  }
 }
