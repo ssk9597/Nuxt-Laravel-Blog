@@ -1,9 +1,11 @@
 <template>
-  <div v-if="isEdit">
-    <h2>詳細ページ</h2>
-    <h3>{{ post.title }}</h3>
-    <p v-html="post.content"></p>
-    <button v-if="isAuth" @click="edit">編集する</button>
+  <div>
+    <div v-if="isEdit">
+      <h2>詳細ページ</h2>
+      <h3>{{ post.title }}</h3>
+      <p v-html="post.content"></p>
+      <button v-if="isAuth" @click="edit">編集する</button>
+    </div>
   </div>
 </template>
 
@@ -16,9 +18,6 @@ import {
   useRoute,
   onMounted,
 } from '@nuxtjs/composition-api';
-
-// cookie
-import $cookie from 'cookie-universal-nuxt';
 
 export default defineComponent({
   setup(props, context) {
