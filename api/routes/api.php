@@ -28,4 +28,7 @@ Route::middleware(['cors'])->group(function () {
   Route::get("/posts/index", "PostController@index");
   // 投稿詳細
   Route::get("/posts/show/{url}", "PostController@show");
+  // （ログイン必須）更新
+  Route::post("/posts/{url}/update", "PostController@update");
+  // Route::middleware("auth:api")->post("/posts/{url}/update", "PostController@update");
 });
