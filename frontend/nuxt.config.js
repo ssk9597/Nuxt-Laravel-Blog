@@ -20,11 +20,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '@/plugins/vee-validate' },
-    { src: '@/plugins/cookie-storage' },
-    { src: '@/plugins/quill', mode: 'client' },
-  ],
+  plugins: [{ src: '@/plugins/vee-validate' }, { src: '@/plugins/cookie-storage' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
