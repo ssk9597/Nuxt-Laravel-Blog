@@ -5,6 +5,7 @@
       <h3>{{ post.title }}</h3>
       <p v-html="post.content"></p>
       <button v-if="isAuth" @click="edit">編集する</button>
+      <button v-if="isAuth" @click="destroy(post.id)">削除する</button>
     </div>
     <div v-else>
       <client-only>
@@ -114,6 +115,11 @@ export default defineComponent({
     const edit = () => {
       isEdit.value = !isEdit.value;
     };
+    const destroy = async (id: Number) => {
+      console.log(id);
+      await $axios.post(`/posts/${id}/destroy`);
+      router.push('/');
+    };
     const addImage = async () => {
       const url = window.prompt('URL');
 
@@ -148,6 +154,7 @@ export default defineComponent({
       errors,
       // methods
       edit,
+      destroy,
       addImage,
       updateContent,
     };
