@@ -96,9 +96,10 @@ export default defineComponent({
       const uri = computed((): String => route.value.params.url);
       const res = await $axios.get(`/posts/show/${uri.value}`);
       post.value = res.data;
-      console.log(post.value);
+      // 値を入れる
       title.value = post.value.title;
       url.value = post.value.url;
+      editor.value.commands.setContent(post.value.content);
     });
 
     // mounted
