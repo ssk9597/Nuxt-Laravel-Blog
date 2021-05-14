@@ -161,13 +161,6 @@ export default defineComponent({
     padding-bottom: 20px;
   }
 
-  &-alert-red {
-    padding: 5px 10px;
-    background: #ffebee;
-    margin-bottom: 10px;
-    font-size: 12px;
-  }
-
   &-input {
     padding-top: 10px;
     padding-bottom: 15px;
