@@ -9,7 +9,7 @@
           <p v-if="errors.password">{{ errors.password[0] }}</p>
         </div>
         <!-- 姓 -->
-        <FormTitle :check="'必須'" :name="'姓'" />
+        <FormLabel :check="'必須'" :name="'姓'" />
         <ValidationProvider class="register-input" name="姓" rules="required" v-slot="{ errors }">
           <input
             class="register-input-area"
@@ -20,7 +20,7 @@
           <p class="register-input-error">{{ errors[0] }}</p>
         </ValidationProvider>
         <!-- 名 -->
-        <FormTitle :check="'必須'" :name="'名'" />
+        <FormLabel :check="'必須'" :name="'名'" />
         <ValidationProvider class="register-input" name="名" rules="required" v-slot="{ errors }">
           <input
             class="register-input-area"
@@ -31,7 +31,7 @@
           <p class="register-input-error">{{ errors[0] }}</p>
         </ValidationProvider>
         <!-- メールアドレス -->
-        <FormTitle :check="'必須'" :name="'メールアドレス'" />
+        <FormLabel :check="'必須'" :name="'メールアドレス'" />
         <ValidationProvider
           class="register-input"
           name="メールアドレス"
@@ -47,7 +47,7 @@
           <p class="register-input-error">{{ errors[0] }}</p>
         </ValidationProvider>
         <!-- パスワード -->
-        <FormTitle :check="'必須'" :name="'パスワード'" />
+        <FormLabel :check="'必須'" :name="'パスワード'" />
         <ValidationProvider
           class="register-input"
           name="パスワード"
@@ -72,10 +72,10 @@
 <script lang="ts">
 import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-api';
 // components
-import FormTitle from '@/components/Atoms/Common/FormTitle';
+import FormLabel from '@/components/Atoms/Common/FormLabel';
 
 export default defineComponent({
-  components: { FormTitle },
+  components: { FormLabel },
   setup(props, context) {
     // axios
     const { $axios, store } = useContext();
