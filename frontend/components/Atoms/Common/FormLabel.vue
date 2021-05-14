@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from '@nuxtjs/composition-api';
+import { defineComponent } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   props: {
@@ -20,15 +20,6 @@ export default defineComponent({
       type: String,
       required: true,
     },
-  },
-  setup(props: any) {
-    const check = computed(() => props.check);
-    const name = computed(() => props.name);
-
-    return {
-      check,
-      name,
-    };
   },
 });
 </script>
