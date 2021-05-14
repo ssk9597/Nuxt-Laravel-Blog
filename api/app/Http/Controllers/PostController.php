@@ -9,6 +9,7 @@ use App\Models\Post;
 
 // Validation
 use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 
 class PostController extends Controller
 {
@@ -23,5 +24,25 @@ class PostController extends Controller
   {
     $post = new Post;
     $post->fill($request->all())->save();
+  }
+
+  // 投稿詳細を取得する
+  public function show($url)
+  {
+    $post = Post::where("url", $url)->first();
+    return $post;
+  }
+
+  // 投稿を更新する
+  public function update(UpdatePost $request, $url)
+  {
+    $post = Post::where("url", $url)->first();
+    $post->fill($request->all())->save();
+  }
+
+  // 投稿を削除する
+  public function destroy($id)
+  {
+    Post::destroy($id);
   }
 }
