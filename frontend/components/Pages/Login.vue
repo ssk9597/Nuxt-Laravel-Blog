@@ -8,36 +8,22 @@
         </div>
         <!-- メールアドレス -->
         <FormLabel :name="'メールアドレス'" />
-        <ValidationProvider
-          class="login-input"
-          name="メールアドレス"
-          rules="required|email"
-          v-slot="{ errors }"
-        >
-          <input
-            class="login-input-area"
-            type="email"
-            placeholder="例）taro@example.com"
-            v-model="email"
-          />
-          <p class="login-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput
+          :name="'メールアドレス'"
+          :rules="'required|email'"
+          :type="'email'"
+          :placeholder="'例）taro@example.com'"
+          v-model="email"
+        />
         <!-- パスワード -->
         <FormLabel :name="'パスワード'" />
-        <ValidationProvider
-          class="login-input"
-          name="パスワード"
-          rules="required|min:8|alpha_dash"
-          v-slot="{ errors }"
-        >
-          <input
-            class="login-input-area"
-            type="password"
-            placeholder="例）taroTanaka"
-            v-model="password"
-          />
-          <p class="login-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput
+          :name="'パスワード'"
+          :rules="'required|min:8|alpha_dash'"
+          :type="'password'"
+          :placeholder="'例）taroTanaka'"
+          v-model="password"
+        />
         <!-- 新規追加 -->
         <button class="login-button" type="submit" :disabled="invalid">ログイン</button>
       </form>
@@ -50,11 +36,13 @@ import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 //components
 import FormTitle from '@/components/Atoms/Common/FormTitle';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
+import FormInput from '@/components/Atoms/Common/FormInput';
 
 export default defineComponent({
   components: {
     FormTitle,
     FormLabel,
+    FormInput,
   },
   setup(props, context) {
     // axios
