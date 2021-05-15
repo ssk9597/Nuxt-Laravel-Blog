@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+import { defineComponent, ref, useContext, useRouter } from '@nuxtjs/composition-api';
 //components
 import FormError from '@/components/Atoms/Login/FormError';
 import FormTitle from '@/components/Atoms/Common/FormTitle';
@@ -50,7 +50,7 @@ export default defineComponent({
     // axios
     const { $axios, store } = useContext();
     // router
-    const router = context.root.$router;
+    const router = useRouter();
     // data
     const email = ref<string>('');
     const password = ref<string>('');
