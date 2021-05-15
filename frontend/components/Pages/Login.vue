@@ -25,7 +25,7 @@
           v-model="password"
         />
         <!-- 新規追加 -->
-        <button class="login-button" type="submit" :disabled="invalid">ログイン</button>
+        <FormButton :name="'ログイン'" :disabled="invalid" />
       </form>
     </ValidationObserver>
   </div>
@@ -37,12 +37,14 @@ import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 import FormTitle from '@/components/Atoms/Common/FormTitle';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
 import FormInput from '@/components/Atoms/Common/FormInput';
+import FormButton from '@/components/Atoms/Common/FormButton';
 
 export default defineComponent({
   components: {
     FormTitle,
     FormLabel,
     FormInput,
+    FormButton,
   },
   setup(props, context) {
     // axios
@@ -119,50 +121,6 @@ export default defineComponent({
     background: #ffebee;
     margin-bottom: 10px;
     font-size: 12px;
-  }
-
-  &-input {
-    padding-top: 10px;
-    padding-bottom: 15px;
-    display: block;
-
-    &-area {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      color: #303030;
-      border: solid 1px #eee;
-      border-radius: 6px;
-      outline: 0;
-      transition: 0.3s;
-    }
-
-    &-error {
-      padding-top: 5px;
-      font-size: 12px;
-      color: #ee4056;
-      font-weight: 600;
-    }
-  }
-
-  &-button {
-    margin-top: 20px;
-    width: 100%;
-    height: 40px;
-    color: #fff;
-    background: #40c7c1;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    cursor: pointer;
-    appearance: none;
-    transition: 0.2s;
-
-    &:hover {
-      background: #78cec8;
-    }
   }
 }
 </style>
