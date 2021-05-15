@@ -2,7 +2,7 @@
   <div class="login-container">
     <ValidationObserver v-slot="{ invalid }">
       <form class="login-wrapper" @submit.prevent="loginUser()">
-        <h2 class="login-title">ログイン</h2>
+        <FormTitle :title="'ログイン'" />
         <div v-if="errors" class="login-alert-red">
           <p>{{ errors }}</p>
         </div>
@@ -51,8 +51,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
+//components
+import FormTitle from '@/components/Atoms/Common/FormTitle';
 
 export default defineComponent({
+  components: {
+    FormTitle,
+  },
   setup(props, context) {
     // axios
     const { $axios, store } = useContext();
@@ -121,11 +126,6 @@ export default defineComponent({
     background-color: #fff;
     border-radius: 10px;
     padding: 50px 50px;
-  }
-
-  &-title {
-    text-align: center;
-    padding-bottom: 20px;
   }
 
   &-alert-red {
