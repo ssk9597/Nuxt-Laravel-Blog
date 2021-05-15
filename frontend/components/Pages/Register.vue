@@ -6,58 +6,28 @@
         <FormError :errors="errors" />
         <!-- 姓 -->
         <FormLabel :check="'必須'" :name="'姓'" />
-        <ValidationProvider class="register-input" name="姓" rules="required" v-slot="{ errors }">
-          <input
-            class="register-input-area"
-            type="text"
-            placeholder="例）田中"
-            v-model="lastName"
-          />
-          <p class="register-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput :name="'姓'" :rules="'required'" :placeholder="'例）田中'" v-model="lastName" />
         <!-- 名 -->
         <FormLabel :check="'必須'" :name="'名'" />
-        <ValidationProvider class="register-input" name="名" rules="required" v-slot="{ errors }">
-          <input
-            class="register-input-area"
-            type="text"
-            placeholder="例）太郎"
-            v-model="firstName"
-          />
-          <p class="register-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput :name="'名'" :rules="'required'" :placeholder="'例）太郎'" v-model="firstName" />
         <!-- メールアドレス -->
         <FormLabel :check="'必須'" :name="'メールアドレス'" />
-        <ValidationProvider
-          class="register-input"
-          name="メールアドレス"
-          rules="required|email"
-          v-slot="{ errors }"
-        >
-          <input
-            class="register-input-area"
-            type="email"
-            placeholder="例）taro@example.com"
-            v-model="email"
-          />
-          <p class="register-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput
+          :name="'メールアドレス'"
+          :rules="'required|email'"
+          :type="'email'"
+          :placeholder="'例）taro@example.com'"
+          v-model="email"
+        />
         <!-- パスワード -->
         <FormLabel :check="'必須'" :name="'パスワード'" />
-        <ValidationProvider
-          class="register-input"
-          name="パスワード"
-          rules="required|min:8|alpha_dash"
-          v-slot="{ errors }"
-        >
-          <input
-            class="register-input-area"
-            type="password"
-            placeholder="例）taroTanaka"
-            v-model="password"
-          />
-          <p class="register-input-error">{{ errors[0] }}</p>
-        </ValidationProvider>
+        <FormInput
+          :name="'パスワード'"
+          :rules="'required|min:8|alpha_dash'"
+          :type="'password'"
+          :placeholder="'例）taroTanaka'"
+          v-model="password"
+        />
         <!-- 新規追加 -->
         <button class="register-button" type="submit" :disabled="invalid">新規登録</button>
       </form>
@@ -70,9 +40,10 @@ import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-
 // components
 import FormError from '@/components/Atoms/Common/FormError';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
+import FormInput from '@/components/Atoms/Common/FormInput';
 
 export default defineComponent({
-  components: { FormError, FormLabel },
+  components: { FormError, FormLabel, FormInput },
   setup(props, context) {
     // axios
     const { $axios, store } = useContext();
@@ -159,31 +130,6 @@ export default defineComponent({
   &-title {
     text-align: center;
     padding-bottom: 20px;
-  }
-
-  &-input {
-    padding-top: 10px;
-    padding-bottom: 15px;
-    display: block;
-
-    &-area {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      color: #303030;
-      border: solid 1px #eee;
-      border-radius: 6px;
-      outline: 0;
-      transition: 0.3s;
-    }
-
-    &-error {
-      padding-top: 5px;
-      font-size: 12px;
-      color: #ee4056;
-      font-weight: 600;
-    }
   }
 
   &-button {
