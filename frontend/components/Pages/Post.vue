@@ -4,24 +4,20 @@
       <FormError :errors="errors" />
       <ValidationObserver v-slot="{ invalid }">
         <div class="post-container">
-          <ValidationProvider
-            class="post-form"
-            name="タイトル"
-            rules="required"
-            v-slot="{ errors }"
-          >
-            <input class="post-input" :placeholder="titlePlaceholder" type="text" v-model="title" />
-            <p class="post-input-error">{{ errors[0] }}</p>
-          </ValidationProvider>
-          <ValidationProvider
-            class="post-form"
-            name="URL"
-            rules="required|alpha_dash"
-            v-slot="{ errors }"
-          >
-            <input class="post-input" :placeholder="urlPlaceholder" type="text" v-model="url" />
-            <p class="post-input-error">{{ errors[0] }}</p>
-          </ValidationProvider>
+          <FormInput
+            :name="'タイトル'"
+            :rules="'required'"
+            :type="'text'"
+            :placeholder="titlePlaceholder"
+            v-model="title"
+          />
+          <FormInput
+            :name="'URL'"
+            :rules="'required|alpha_dash'"
+            :type="'text'"
+            :placeholder="urlPlaceholder"
+            v-model="url"
+          />
           <ValidationProvider name="本文" rules="required" v-slot="{ errors }">
             <div class="post-contents">
               <editor-content class="post-content" :editor="editor" />
@@ -57,12 +53,14 @@ import Dropcursor from '@tiptap/extension-dropcursor';
 
 //components
 import FormError from '@/components/Atoms/Common/FormError';
+import FormInput from '@/components/Atoms/Post/FormInput';
 
 export default defineComponent({
   middleware: 'login_redirect',
   components: {
     EditorContent,
     FormError,
+    FormInput,
   },
   setup(props, context) {
     // axios
@@ -131,33 +129,6 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
-}
-.post-form {
-  max-width: 600px;
-  width: 100%;
-  display: block;
-  margin: 10px 0;
-}
-.post-input {
-  box-sizing: border-box;
-  width: 100%;
-  height: 30px;
-  padding: 0 10px;
-  font-size: 12px;
-  color: #333;
-  border: solid 1px #ccc;
-  border-radius: 6px;
-  outline: 0;
-  transition: 0.3s;
-  &:focus {
-    border: 1px solid #00b5ad;
-  }
-}
-.post-input-error {
-  padding-top: 5px;
-  font-size: 12px;
-  color: #ee4056;
-  font-weight: 600;
 }
 .post-contents {
   margin-top: 20px;
