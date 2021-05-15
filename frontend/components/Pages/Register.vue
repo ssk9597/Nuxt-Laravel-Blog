@@ -2,7 +2,7 @@
   <div class="register-container">
     <ValidationObserver v-slot="{ invalid }">
       <form class="register-wrapper" @submit.prevent="registerUser()">
-        <h2 class="register-title">新規登録</h2>
+        <FormTitle :title="'新規登録'" />
         <FormError :errors="errors" />
         <!-- 姓 -->
         <FormLabel :check="'必須'" :name="'姓'" />
@@ -38,12 +38,13 @@
 <script lang="ts">
 import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-api';
 // components
+import FormTitle from '@/components/Atoms/Common/FormTitle';
 import FormError from '@/components/Atoms/Common/FormError';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
 import FormInput from '@/components/Atoms/Common/FormInput';
 
 export default defineComponent({
-  components: { FormError, FormLabel, FormInput },
+  components: { FormTitle, FormError, FormLabel, FormInput },
   setup(props, context) {
     // axios
     const { $axios, store } = useContext();
@@ -57,7 +58,7 @@ export default defineComponent({
     const errors = ref<string>('');
 
     // computed
-    const name = computed(() => {
+    const name = computed((): string => {
       return `${lastName.value} ${firstName.value}`;
     });
 
@@ -125,11 +126,6 @@ export default defineComponent({
     background-color: #fff;
     border-radius: 10px;
     padding: 50px 50px;
-  }
-
-  &-title {
-    text-align: center;
-    padding-bottom: 20px;
   }
 
   &-button {
