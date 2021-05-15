@@ -7,9 +7,7 @@
           <p>{{ errors }}</p>
         </div>
         <!-- メールアドレス -->
-        <label class="login-label">
-          <span class="login-label-name">メールアドレス</span>
-        </label>
+        <FormLabel :name="'メールアドレス'" />
         <ValidationProvider
           class="login-input"
           name="メールアドレス"
@@ -25,9 +23,7 @@
           <p class="login-input-error">{{ errors[0] }}</p>
         </ValidationProvider>
         <!-- パスワード -->
-        <label class="login-label">
-          <span class="login-label-name">パスワード</span>
-        </label>
+        <FormLabel :name="'パスワード'" />
         <ValidationProvider
           class="login-input"
           name="パスワード"
@@ -53,10 +49,12 @@
 import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 //components
 import FormTitle from '@/components/Atoms/Common/FormTitle';
+import FormLabel from '@/components/Atoms/Common/FormLabel';
 
 export default defineComponent({
   components: {
     FormTitle,
+    FormLabel,
   },
   setup(props, context) {
     // axios
@@ -133,12 +131,6 @@ export default defineComponent({
     background: #ffebee;
     margin-bottom: 10px;
     font-size: 12px;
-  }
-
-  &-label {
-    &-name {
-      font-size: 0.8rem;
-    }
   }
 
   &-input {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="label">
-      <span class="label-check">{{ check }}</span>
+      <span v-if="check" class="label-check">{{ check }}</span>
       <span class="label-name">{{ name }}</span>
     </label>
   </div>
@@ -14,7 +14,6 @@ export default defineComponent({
   props: {
     check: {
       type: String,
-      required: true,
     },
     name: {
       type: String,
