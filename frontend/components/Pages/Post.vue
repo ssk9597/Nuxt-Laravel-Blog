@@ -1,11 +1,7 @@
 <template>
   <div>
     <client-only>
-      <div v-if="errors" class="post-alert-red">
-        <p v-if="errors.title">{{ errors.title[0] }}</p>
-        <p v-if="errors.url">{{ errors.url[0] }}</p>
-        <p v-if="errors.content">{{ errors.content[0] }}</p>
-      </div>
+      <FormError :errors="errors" />
       <ValidationObserver v-slot="{ invalid }">
         <div class="post-container">
           <ValidationProvider
@@ -59,9 +55,15 @@ import Typography from '@tiptap/extension-typography';
 import Image from '@tiptap/extension-image';
 import Dropcursor from '@tiptap/extension-dropcursor';
 
+//components
+import FormError from '@/components/Atoms/Common/FormError';
+
 export default defineComponent({
   middleware: 'login_redirect',
-  components: { EditorContent },
+  components: {
+    EditorContent,
+    FormError,
+  },
   setup(props, context) {
     // axios
     const { $axios } = useContext();
@@ -124,15 +126,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.post-alert-red {
-  max-width: 600px;
-  width: 100%;
-  margin: 20px auto;
-  padding: 5px 10px;
-  background: #ffebee;
-  margin-bottom: 10px;
-  font-size: 12px;
-}
 .post-container {
   display: flex;
   flex-direction: column;
