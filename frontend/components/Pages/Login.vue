@@ -3,9 +3,7 @@
     <ValidationObserver v-slot="{ invalid }">
       <form class="login-wrapper" @submit.prevent="loginUser()">
         <FormTitle :title="'ログイン'" />
-        <div v-if="errors" class="login-alert-red">
-          <p>{{ errors }}</p>
-        </div>
+        <FormError :errors="errors" />
         <!-- メールアドレス -->
         <FormLabel :name="'メールアドレス'" />
         <FormInput
@@ -34,6 +32,7 @@
 <script lang="ts">
 import { defineComponent, ref, useContext } from '@nuxtjs/composition-api';
 //components
+import FormError from '@/components/Atoms/Login/FormError';
 import FormTitle from '@/components/Atoms/Common/FormTitle';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
 import FormInput from '@/components/Atoms/Common/FormInput';
@@ -41,6 +40,7 @@ import FormButton from '@/components/Atoms/Common/FormButton';
 
 export default defineComponent({
   components: {
+    FormError,
     FormTitle,
     FormLabel,
     FormInput,
@@ -114,13 +114,6 @@ export default defineComponent({
     background-color: #fff;
     border-radius: 10px;
     padding: 50px 50px;
-  }
-
-  &-alert-red {
-    padding: 5px 10px;
-    background: #ffebee;
-    margin-bottom: 10px;
-    font-size: 12px;
   }
 }
 </style>

@@ -39,7 +39,7 @@
 import { defineComponent, ref, computed, useContext, useRouter } from '@nuxtjs/composition-api';
 // components
 import FormTitle from '@/components/Atoms/Common/FormTitle';
-import FormError from '@/components/Atoms/Common/FormError';
+import FormError from '@/components/Atoms/Register/FormError';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
 import FormInput from '@/components/Atoms/Common/FormInput';
 import FormButton from '@/components/Atoms/Common/FormButton';
