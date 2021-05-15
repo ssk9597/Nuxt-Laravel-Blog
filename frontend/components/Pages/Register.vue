@@ -29,27 +29,28 @@
           v-model="password"
         />
         <!-- 新規追加 -->
-        <button class="register-button" type="submit" :disabled="invalid">新規登録</button>
+        <FormButton :name="'新規登録'" :disabled="invalid" />
       </form>
     </ValidationObserver>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, useContext } from '@nuxtjs/composition-api';
+import { defineComponent, ref, computed, useContext, useRouter } from '@nuxtjs/composition-api';
 // components
 import FormTitle from '@/components/Atoms/Common/FormTitle';
 import FormError from '@/components/Atoms/Common/FormError';
 import FormLabel from '@/components/Atoms/Common/FormLabel';
 import FormInput from '@/components/Atoms/Common/FormInput';
+import FormButton from '@/components/Atoms/Common/FormButton';
 
 export default defineComponent({
-  components: { FormTitle, FormError, FormLabel, FormInput },
-  setup(props, context) {
+  components: { FormTitle, FormError, FormLabel, FormInput, FormButton },
+  setup(props: any, context: any) {
     // axios
     const { $axios, store } = useContext();
     // router
-    const router = context.root.$router;
+    const router = useRouter();
     // data
     const lastName = ref<string>('');
     const firstName = ref<string>('');
@@ -126,25 +127,6 @@ export default defineComponent({
     background-color: #fff;
     border-radius: 10px;
     padding: 50px 50px;
-  }
-
-  &-button {
-    margin-top: 20px;
-    width: 100%;
-    height: 40px;
-    color: #fff;
-    background: #40c7c1;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    cursor: pointer;
-    appearance: none;
-    transition: 0.2s;
-
-    &:hover {
-      background: #78cec8;
-    }
   }
 }
 </style>
