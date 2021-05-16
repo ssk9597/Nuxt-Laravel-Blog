@@ -15,9 +15,11 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scopes>
+<style lang="scss" scoped>
 .title {
-  text-align: center;
-  padding-bottom: 20px;
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #7bc3d1;
 }
 </style>
