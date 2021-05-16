@@ -3,6 +3,7 @@
     <FirstView :title="'ポートフォリオ'" :image="require('@/assets/images/background.jpg')" />
     <About />
     <Poftfolio :posts="posts" />
+    <Footer />
   </div>
 </template>
 
@@ -13,12 +14,14 @@ import { defineComponent, ref, computed, useContext, onMounted } from '@nuxtjs/c
 import FirstView from '@/components/Organisms/FirstView';
 import About from '@/components/Organisms/About';
 import Poftfolio from '@/components/Organisms/Poftfolio';
+import Footer from '@/components/Organisms/Footer';
 
 export default defineComponent({
   components: {
     FirstView,
     About,
     Poftfolio,
+    Footer,
   },
   setup() {
     // axios
