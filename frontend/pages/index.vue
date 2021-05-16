@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FirstView />
+    <FirstView :title="'ポートフォリオ'" :image="require('@/assets/images/background.jpg')" />
     <div v-for="post in posts" :key="post.id">
       <nuxt-link :to="post.url">
         <h2>{{ post.title }}</h2>
