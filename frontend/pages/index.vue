@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <FirstView :title="'ポートフォリオ'" :image="require('@/assets/images/background.jpg')" />
+    <About />
     <div v-for="post in posts" :key="post.id">
       <nuxt-link :to="post.url">
         <h2>{{ post.title }}</h2>
@@ -15,10 +16,12 @@ import { defineComponent, ref, computed, useContext, onMounted } from '@nuxtjs/c
 
 // components
 import FirstView from '@/components/Atoms/FirstView';
+import About from '@/components/Atoms/About';
 
 export default defineComponent({
   components: {
     FirstView,
+    About,
   },
   setup() {
     // axios
