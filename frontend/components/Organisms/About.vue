@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h2 class="about-title">About me</h2>
+    <HeadingH2 :title="'About me'" />
     <img class="about-img" :src="require('@/assets/images/profile.png')" />
     <p class="about-text">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
@@ -18,8 +18,14 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+import HeadingH2 from '@/components/Atoms/HeadingH2';
+export default defineComponent({
+  components: {
+    HeadingH2,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
