@@ -1,11 +1,12 @@
 <template>
   <div>
     <div v-if="isEdit">
-      <h2>詳細ページ</h2>
-      <h3>{{ post.title }}</h3>
-      <p v-html="post.content"></p>
-      <button v-if="isAuth" @click="edit">編集する</button>
-      <button v-if="isAuth" @click="destroy(post.id)">削除する</button>
+      <FirstView class="post-title" :title="post.title" />
+      <div class="post-text" v-html="post.content"></div>
+      <div class="post-auth">
+        <button class="post-auth-btn" v-if="isAuth" @click="edit">編集する</button>
+        <button class="post-auth-btn" v-if="isAuth" @click="destroy(post.id)">削除する</button>
+      </div>
     </div>
     <div v-else>
       <client-only>
@@ -72,8 +73,11 @@ import Typography from '@tiptap/extension-typography';
 import Image from '@tiptap/extension-image';
 import Dropcursor from '@tiptap/extension-dropcursor';
 
+// components
+import FirstView from '@/components/Organisms/FirstView';
+
 export default defineComponent({
-  components: { EditorContent },
+  components: { EditorContent, FirstView },
   setup(props, context) {
     // axios
     const { $axios, store } = useContext();
@@ -163,6 +167,30 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.post-text {
+  padding: 80px 100px;
+}
+.post-auth {
+  margin-left: 100px;
+  &-btn {
+    max-width: 150px;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 0;
+    color: #fff;
+    background: #00b5ad;
+    text-decoration: none;
+    user-select: none;
+    border: 1px #00b5ad solid;
+    border-radius: 20px;
+    transition: 0.4s ease;
+    cursor: pointer;
+    &:hover {
+      color: #00b5ad;
+      background: #fff;
+    }
+  }
+}
 .post-alert-red {
   max-width: 600px;
   width: 100%;
