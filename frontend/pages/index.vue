@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <FirstView />
     <div v-for="post in posts" :key="post.id">
       <nuxt-link :to="post.url">
         <h2>{{ post.title }}</h2>
@@ -12,7 +13,13 @@
 <script lang="ts">
 import { defineComponent, ref, computed, useContext, onMounted } from '@nuxtjs/composition-api';
 
+// components
+import FirstView from '@/components/Atoms/FirstView';
+
 export default defineComponent({
+  components: {
+    FirstView,
+  },
   setup() {
     // axios
     const { $axios } = useContext();
